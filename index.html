@@ -62,6 +62,12 @@ scale: 80,
             includedeck([
                         ], {
                //INITDELAY: 1000,
+AFTERINIT: function(){
+$(".latex").each(function(i,e) {
+   $(e).text('\\('+$(e).text()+'\\)')
+   MathJax.Hub.Queue(["Typeset",MathJax.Hub, e]);
+});
+},
                /*
                BEFORELOAD: function(){
                }

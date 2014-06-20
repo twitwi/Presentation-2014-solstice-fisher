@@ -3602,6 +3602,7 @@ using a modified version of the script from http://gold-saucer.afraid.org/mathml
 This module provides a support for latex equation syntax.
 */
 
+/*
 (function($, deck, undefined) {
     var $d = $(document);
     var may = function(f) {return f ? f : function() {}};
@@ -3617,6 +3618,7 @@ This module provides a support for latex equation syntax.
     });
 
 })(jQuery, 'deck');
+*/
 
 /*!
 Deck JS - deck.clone
