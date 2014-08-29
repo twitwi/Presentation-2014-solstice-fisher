@@ -1,6 +1,7 @@
 /*
   This is a packed deck.js with some extensions and styles.
   It has been generated from version e37f7c14a123aa8f2f602d2fd6a670f6c17696b7 .
+  + manual cherry pick of https://github.com/twitwi/deck.js/commit/31db782378efc66f627a64c905d2c7936ee74604#diff-d41d8cd98f00b204e9800998ecf8427e
   It includes:
      /home/twilight/doc/PublicationsAndPresentations/2014-06-20-goutelas-solstice-fisher/deck.js/extensions/includedeck/load.js
      /home/twilight/doc/PublicationsAndPresentations/2014-06-20-goutelas-solstice-fisher/deck.js//jquery.min.js
@@ -3732,7 +3733,17 @@ This module provides a support for cloning the deck.
 
         $(opts.selectors.clonepointer).hide();
 
-        isClone = window.opener && window.opener.___iscloner___;
+        function safeIsClone(w) {
+            try {
+                return w.opener && w.opener.___iscloner___;
+            } catch(e) {
+                // when linked from another origin, there is an opener
+                // but accessing its properties throws a security exception
+                return false;
+            }
+        }
+
+        isClone = safeIsClone(window);
 
         if (isClone) { // it's a clone!
             $("body").addClass(opts.classes.isClone);
